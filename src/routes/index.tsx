@@ -6,35 +6,31 @@ export const Route = createFileRoute('/')({ component: HomePage })
 // ── Data ─────────────────────────────────────────────────────────────────────
 
 const PASTRIES = [
-  { name: 'Cream Puff', desc: 'Light choux pastry filled with silky vanilla cream' },
-  { name: 'Baklava', desc: 'Layers of crispy filo with honey and walnuts' },
-  { name: 'Apple Strudel', desc: 'Flaky dough wrapped around spiced apple filling' },
-  { name: 'Chocolate Éclair', desc: 'Choux pastry with chocolate glaze and cream' },
-  { name: 'Millefeuille', desc: 'Delicate puff pastry with pastry cream layers' },
-  { name: 'Almond Croissant', desc: 'Buttery croissant filled with almond frangipane' },
+  { name: 'Homemade Crescent', desc: 'Handmade, delicious, and fluffy homemade crescent' },
+  { name: 'Cheese pie', desc: 'Crusty cheese pie filled with traditional white cheese' },
+  { name: 'Mini cheese pie', desc: 'The signature crusty cheese pie little brother, shaped as a triangle' },
+  { name: 'Pogacha', desc: 'Traditional macedonian bread, usually prepared for orthodox holidays' },
 ]
 
 const CREAM_SALADS = [
-  { name: 'Classic Russe', desc: 'Potatoes, carrots, peas and mayo dressing' },
-  { name: 'Shopska Cream', desc: 'Roasted peppers, cheese and fresh herbs' },
-  { name: 'Tuna Delight', desc: 'Tuna, corn, olives and creamy dressing' },
-  { name: "Chef's Special", desc: 'Seasonal vegetables with our secret sauce' },
+  { name: 'Ruska salad', desc: 'Potatoes, carrots, peas and mayo dressing' },
+  { name: 'Francuska salad', desc: 'Yogurt, cheese, ham and cucumbers' },
+  { name: 'Chicken salad', desc: 'Boiled chicken breast, mayo, pickles, yogurt' },
 ]
 
 const SANDWICHES = [
-  { name: 'Club Classic', desc: 'Turkey, bacon, lettuce, tomato and mayo' },
-  { name: 'Veggie Fresh', desc: 'Grilled veggies, hummus and feta cheese' },
-  { name: 'Tuna Melt', desc: 'Tuna salad with melted cheese and pickles' },
-  { name: 'Chicken Pesto', desc: 'Grilled chicken, pesto, mozzarella and greens' },
-  { name: 'Ham & Brie', desc: 'Smoked ham, creamy brie and honey mustard' },
-  { name: 'BBQ Beef', desc: 'Slow-cooked beef with BBQ sauce and coleslaw' },
+  { name: 'Classic Ham', desc: 'Homemade bun, Ham, Greek yogurt, Cheese, Tomato and Cucumber' },
+  { name: 'Classic Peperoni', desc: 'Homemade bun, Peperoni, Greek yogurt, Cheese, Tomato and Cucumber' },
+  { name: 'Classic Smoked Pork Ham', desc: 'Homemade bun, Smoked Pork, Greek yogurt, Cheese, Tomato and Cucumber' },
+  { name: 'Cream salad Sandwich', desc: 'Homemade bun filled with any of the cream salads' },
+  { name: 'Make your own sandwich', desc: 'Choose any ingredient to make your own sandwich with the best homemade buns' },
 ]
 
 const PANCAKES = [
-  { name: 'Classic Butter', desc: 'Fluffy pancakes with butter and maple syrup' },
-  { name: 'Nutella Dream', desc: 'Thin crepes with Nutella and crushed hazelnuts' },
-  { name: 'Berry Bliss', desc: 'Pancakes with mixed berries and whipped cream' },
-  { name: 'Savoury Ham', desc: 'Crepes with ham, cheese and béchamel sauce' },
+  { name: 'Makedonska Palachinka', desc: 'The classic balkan pancake filled with hazelnut cocoa cream and banana' },
+  { name: 'Piroshka with ham and cheese', desc: 'Deep-fried pancake filled with ham and cheese' },
+  { name: 'Piroshka with ruska salad', desc: 'Deep-fried pancake filled with Ruska salad' },
+  { name: 'Palachinka', desc: 'Or just get the pancakes and fill it however you like' },
 ]
 
 // ── Components ────────────────────────────────────────────────────────────────
