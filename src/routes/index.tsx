@@ -222,8 +222,8 @@ function HomePage() {
                   <div>
                     <p className="m-0 font-semibold text-[var(--text-primary)]">Address</p>
                     <p className="m-0 text-sm text-[var(--text-secondary)]">
-                      Skopje, Macedonia<br />
-                      <span className="italic opacity-70">(exact address coming soon)</span>
+                      Bozhidar Adzhia 3, lok. 8<br />
+                      Skopje 1000, Macedonia
                     </p>
                   </div>
                 </div>
@@ -235,10 +235,10 @@ function HomePage() {
                   <div>
                     <p className="m-0 font-semibold text-[var(--text-primary)]">Phone</p>
                     <a
-                      href="tel:+38900000000"
+                      href="tel:+38922771800"
                       className="text-sm font-semibold text-[var(--accent-deep)] hover:text-[var(--accent)]"
                     >
-                      +389 00 000 000
+                      +389 22 771 800
                     </a>
                   </div>
                 </div>
@@ -250,8 +250,9 @@ function HomePage() {
                   <div>
                     <p className="m-0 font-semibold text-[var(--text-primary)]">Working Hours</p>
                     <p className="m-0 text-sm text-[var(--text-secondary)]">
-                      Mon – Fri: 07:00 – 20:00<br />
-                      Sat – Sun: 08:00 – 18:00
+                      Mon – Fri: 08:00 – 16:00<br />
+                      Saturday: 08:00 – 13:00<br />
+                      Sunday: Closed
                     </p>
                   </div>
                 </div>
@@ -283,7 +284,7 @@ function HomePage() {
             <div className="card-shell overflow-hidden p-0">
               <iframe
                 title="Smile Bakery location — Skopje"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=21.38%2C41.97%2C21.48%2C42.02&layer=mapnik&marker=41.9965%2C21.4314"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=21.4347%2C41.9782%2C21.4447%2C41.9832&layer=mapnik&marker=41.9808%2C21.4398"
                 width="100%"
                 height="100%"
                 style={{ minHeight: '400px', border: 0, display: 'block' }}
