@@ -1,45 +1,17 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 import { Camera, MapPin, Phone, Clock, Instagram, Facebook } from 'lucide-react'
 
 export const Route = createFileRoute('/')({ component: HomePage })
 
-// ── Data ─────────────────────────────────────────────────────────────────────
-
-const PASTRIES = [
-  { name: 'Homemade Crescent', desc: 'Handmade, delicious, and fluffy homemade crescent' },
-  { name: 'Cheese pie', desc: 'Crusty cheese pie filled with traditional white cheese' },
-  { name: 'Mini cheese pie', desc: 'The signature crusty cheese pie little brother, shaped as a triangle' },
-  { name: 'Pogacha', desc: 'Traditional macedonian bread, usually prepared for orthodox holidays' },
-]
-
-const CREAM_SALADS = [
-  { name: 'Ruska salad', desc: 'Potatoes, carrots, peas and mayo dressing' },
-  { name: 'Francuska salad', desc: 'Yogurt, cheese, ham and cucumbers' },
-  { name: 'Chicken salad', desc: 'Boiled chicken breast, mayo, pickles, yogurt' },
-]
-
-const SANDWICHES = [
-  { name: 'Classic Ham', desc: 'Homemade bun, Ham, Greek yogurt, Cheese, Tomato and Cucumber' },
-  { name: 'Classic Peperoni', desc: 'Homemade bun, Peperoni, Greek yogurt, Cheese, Tomato and Cucumber' },
-  { name: 'Classic Smoked Pork Ham', desc: 'Homemade bun, Smoked Pork, Greek yogurt, Cheese, Tomato and Cucumber' },
-  { name: 'Cream salad Sandwich', desc: 'Homemade bun filled with any of the cream salads' },
-  { name: 'Make your own sandwich', desc: 'Choose any ingredient to make your own sandwich with the best homemade buns' },
-]
-
-const PANCAKES = [
-  { name: 'Makedonska Palachinka', desc: 'The classic balkan pancake filled with hazelnut cocoa cream and banana' },
-  { name: 'Piroshka with ham and cheese', desc: 'Deep-fried pancake filled with ham and cheese' },
-  { name: 'Piroshka with ruska salad', desc: 'Deep-fried pancake filled with Ruska salad' },
-  { name: 'Palachinka', desc: 'Or just get the pancakes and fill it however you like' },
-]
-
 // ── Components ────────────────────────────────────────────────────────────────
 
 function ImgPlaceholder() {
+  const { t } = useTranslation()
   return (
     <div className="img-placeholder">
       <Camera size={28} className="mb-2 opacity-50" />
-      <span className="text-xs font-semibold opacity-60">Photo coming soon</span>
+      <span className="text-xs font-semibold opacity-60">{t('misc.photoComingSoon')}</span>
     </div>
   )
 }
@@ -96,6 +68,20 @@ function MenuSection({
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 function HomePage() {
+  const { t } = useTranslation()
+
+  const pastries = t('menu.pastries.items', { returnObjects: true }) as { name: string; desc: string }[]
+  const creamSalads = t('menu.creamSalads.items', { returnObjects: true }) as { name: string; desc: string }[]
+  const sandwiches = t('menu.sandwiches.items', { returnObjects: true }) as { name: string; desc: string }[]
+  const pancakes = t('menu.pancakes.items', { returnObjects: true }) as { name: string; desc: string }[]
+
+  const pills = [
+    t('hero.pills.pastries'),
+    t('hero.pills.creamSalads'),
+    t('hero.pills.sandwiches'),
+    t('hero.pills.pancakes'),
+  ]
+
   return (
     <main>
       {/* ── Hero ── */}
@@ -106,23 +92,22 @@ function HomePage() {
 
         <div className="page-wrap relative">
           <div className="rise-in mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-white/60 px-4 py-1.5 text-sm font-semibold text-[var(--text-secondary)] backdrop-blur-sm">
-            <span>🇲🇰</span> Skopje, Macedonia
+            <span>🇲🇰</span> {t('hero.badge')}
           </div>
 
           <h1
             className="display-title rise-in mb-5 text-5xl font-bold leading-tight tracking-tight text-[var(--text-primary)] sm:text-7xl"
             style={{ animationDelay: '80ms' }}
           >
-            Baked with love<br />
-            <span className="text-[var(--accent-deep)]">served with a smile 😊</span>
+            {t('hero.title')}<br />
+            <span className="text-[var(--accent-deep)]">{t('hero.titleAccent')}</span>
           </h1>
 
           <p
             className="rise-in mx-auto mb-8 max-w-xl text-lg text-[var(--text-secondary)] sm:text-xl"
             style={{ animationDelay: '160ms' }}
           >
-            Freshly made pastries, cream salads, sandwiches and pancakes — crafted
-            daily in our cozy Skopje kitchen.
+            {t('hero.description')}
           </p>
 
           <div
@@ -130,10 +115,10 @@ function HomePage() {
             style={{ animationDelay: '240ms' }}
           >
             <a href="#menu" className="btn-primary text-sm sm:text-base">
-              See Our Menu
+              {t('hero.seeMenu')}
             </a>
             <a href="#contact" className="btn-outline text-sm sm:text-base">
-              Order Now
+              {t('hero.orderNow')}
             </a>
           </div>
 
@@ -142,7 +127,7 @@ function HomePage() {
             className="rise-in mt-10 flex flex-wrap justify-center gap-2"
             style={{ animationDelay: '320ms' }}
           >
-            {['🥐 Pastries', '🥗 Cream Salads', '🥪 Sandwiches', '🥞 Pancakes'].map((c) => (
+            {pills.map((c) => (
               <span
                 key={c}
                 className="rounded-full border border-[var(--line)] bg-white/70 px-4 py-1.5 text-sm font-semibold text-[var(--text-secondary)]"
@@ -157,39 +142,39 @@ function HomePage() {
       {/* ── Menu sections ── */}
       <section id="menu" className="page-wrap px-4 pb-8">
         <div className="mb-2 text-center">
-          <p className="section-label">Our Menu</p>
+          <p className="section-label">{t('menu.sectionLabel')}</p>
           <h2 className="display-title mt-1 text-3xl font-bold text-[var(--text-primary)] sm:text-4xl">
-            Something for everyone
+            {t('menu.sectionTitle')}
           </h2>
         </div>
 
         <MenuSection
           emoji="🥐"
-          label="Freshly Baked"
-          title="Pastries"
-          products={PASTRIES}
+          label={t('menu.pastries.label')}
+          title={t('menu.pastries.title')}
+          products={pastries}
         />
 
         <MenuSection
           emoji="🥗"
-          label="Homemade"
-          title="Cream Salads"
-          products={CREAM_SALADS}
+          label={t('menu.creamSalads.label')}
+          title={t('menu.creamSalads.title')}
+          products={creamSalads}
           columns="grid-cols-2 md:grid-cols-4"
         />
 
         <MenuSection
           emoji="🥪"
-          label="Build Your Own"
-          title="Sandwiches"
-          products={SANDWICHES}
+          label={t('menu.sandwiches.label')}
+          title={t('menu.sandwiches.title')}
+          products={sandwiches}
         />
 
         <MenuSection
           emoji="🥞"
-          label="Sweet & Savoury"
-          title="Pancakes"
-          products={PANCAKES}
+          label={t('menu.pancakes.label')}
+          title={t('menu.pancakes.title')}
+          products={pancakes}
           columns="grid-cols-2 md:grid-cols-4"
         />
       </section>
@@ -198,12 +183,12 @@ function HomePage() {
       <section id="contact" className="mt-20 bg-[var(--bg-soft)] px-4 py-16">
         <div className="page-wrap">
           <div className="mb-10 text-center">
-            <p className="section-label">Find Us</p>
+            <p className="section-label">{t('contact.sectionLabel')}</p>
             <h2 className="display-title mt-1 text-3xl font-bold text-[var(--text-primary)] sm:text-4xl">
-              Visit or Order
+              {t('contact.sectionTitle')}
             </h2>
             <p className="mt-2 text-[var(--text-secondary)]">
-              Come in, or call us to place your order ahead of time.
+              {t('contact.sectionDesc')}
             </p>
           </div>
 
@@ -211,7 +196,7 @@ function HomePage() {
             {/* Contact info */}
             <div className="card-shell p-8">
               <h3 className="mb-6 text-xl font-bold text-[var(--text-primary)]">
-                Contact Information
+                {t('contact.cardTitle')}
               </h3>
 
               <div className="space-y-5">
@@ -220,10 +205,10 @@ function HomePage() {
                     <MapPin size={18} />
                   </span>
                   <div>
-                    <p className="m-0 font-semibold text-[var(--text-primary)]">Address</p>
+                    <p className="m-0 font-semibold text-[var(--text-primary)]">{t('contact.address.label')}</p>
                     <p className="m-0 text-sm text-[var(--text-secondary)]">
-                      Bozhidar Adzhia 3, lok. 8<br />
-                      Skopje 1000, Macedonia
+                      {t('contact.address.line1')}<br />
+                      {t('contact.address.line2')}
                     </p>
                   </div>
                 </div>
@@ -233,7 +218,7 @@ function HomePage() {
                     <Phone size={18} />
                   </span>
                   <div>
-                    <p className="m-0 font-semibold text-[var(--text-primary)]">Phone</p>
+                    <p className="m-0 font-semibold text-[var(--text-primary)]">{t('contact.phone.label')}</p>
                     <a
                       href="tel:+38922771800"
                       className="text-sm font-semibold text-[var(--accent-deep)] hover:text-[var(--accent)]"
@@ -248,11 +233,11 @@ function HomePage() {
                     <Clock size={18} />
                   </span>
                   <div>
-                    <p className="m-0 font-semibold text-[var(--text-primary)]">Working Hours</p>
+                    <p className="m-0 font-semibold text-[var(--text-primary)]">{t('contact.hours.label')}</p>
                     <p className="m-0 text-sm text-[var(--text-secondary)]">
-                      Mon – Fri: 08:00 – 16:00<br />
-                      Saturday: 08:00 – 13:00<br />
-                      Sunday: Closed
+                      {t('contact.hours.weekdays')}<br />
+                      {t('contact.hours.saturday')}<br />
+                      {t('contact.hours.sunday')}
                     </p>
                   </div>
                 </div>
@@ -261,7 +246,7 @@ function HomePage() {
               {/* Social links */}
               <div className="mt-8 border-t border-[var(--line)] pt-6">
                 <p className="mb-3 text-sm font-semibold text-[var(--text-muted)]">
-                  Follow us
+                  {t('contact.social.follow')}
                 </p>
                 <div className="flex gap-3">
                   <a

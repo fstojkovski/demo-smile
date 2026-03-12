@@ -1,4 +1,7 @@
+import { useTranslation } from 'react-i18next'
+
 export default function Footer() {
+  const { t } = useTranslation()
   const year = new Date().getFullYear()
 
   return (
@@ -9,10 +12,10 @@ export default function Footer() {
           <span className="font-black tracking-tight text-[var(--text-primary)]" style={{ fontFamily: 'var(--font-display)' }}>
             Smile
           </span>
-          <span className="text-[var(--text-muted)] text-sm ml-1">— Skopje, Macedonia</span>
+          <span className="text-[var(--text-muted)] text-sm ml-1">{t('footer.location')}</span>
         </div>
         <p className="m-0 text-sm text-[var(--text-muted)]">
-          &copy; {year} Smile Bakery. Made with love. 🧁
+          {t('footer.copyright', { year })}
         </p>
       </div>
     </footer>
