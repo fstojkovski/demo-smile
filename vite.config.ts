@@ -7,12 +7,18 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
+const isVercel = !!process.env.VERCEL
+
 const config = defineConfig({
   plugins: [
-    devtools(),
+    !isVercel && devtools(),
     tsconfigPaths({ projects: ['./tsconfig.json'] }),
     tailwindcss(),
-    tanstackStart(),
+    tanstackStart({
+      server: {
+        preset: isVercel ? 'vercel' : undefined,
+      },
+    }),
     viteReact(),
   ],
 })
