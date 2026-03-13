@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Footer() {
   const { t } = useTranslation()
@@ -14,9 +15,12 @@ export default function Footer() {
           </span>
           <span className="text-[var(--text-muted)] text-sm ml-1">{t('footer.location')}</span>
         </div>
-        <p className="m-0 text-sm text-[var(--text-muted)]">
-          {t('footer.copyright', { year })}
-        </p>
+        <div className="flex items-center gap-4">
+          <LanguageSwitcher />
+          <p className="m-0 text-sm text-[var(--text-muted)]">
+            {t('footer.copyright', { year })}
+          </p>
+        </div>
       </div>
     </footer>
   )
