@@ -1,6 +1,7 @@
+import { useRef, useState, useEffect } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
-import { Camera, MapPin, Phone, Clock, Instagram, Facebook } from 'lucide-react'
+import { Camera, MapPin, Phone, Clock, Instagram, Facebook, ChevronLeft, ChevronRight } from 'lucide-react'
 
 export const Route = createFileRoute('/')({ component: HomePage })
 
@@ -28,20 +29,78 @@ function ProductCard({ name, desc }: { name: string; desc: string }) {
   )
 }
 
+function ProductCarousel({ products }: { products: { name: string; desc: string }[] }) {
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
+
+  const updateArrows = () => {
+    const el = scrollRef.current
+    if (!el) return
+    setCanScrollLeft(el.scrollLeft > 0)
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1)
+  }
+
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+    updateArrows()
+    el.addEventListener('scroll', updateArrows, { passive: true })
+    return () => el.removeEventListener('scroll', updateArrows)
+  }, [])
+
+  const scroll = (dir: 'left' | 'right') => {
+    scrollRef.current?.scrollBy({ left: dir === 'left' ? -288 : 288, behavior: 'smooth' })
+  }
+
+  return (
+    <div className="relative">
+      {canScrollLeft && (
+        <button
+          onClick={() => scroll('left')}
+          aria-label="Scroll left"
+          className="absolute -left-4 top-1/2 z-10 flex -translate-y-1/2 items-center justify-center rounded-full border border-[var(--line)] bg-white/90 p-2 shadow-md backdrop-blur-sm transition hover:bg-white"
+        >
+          <ChevronLeft size={18} className="text-[var(--text-secondary)]" />
+        </button>
+      )}
+
+      <div
+        ref={scrollRef}
+        className="scrollbar-hide flex gap-4 overflow-x-auto scroll-smooth pb-2 snap-x snap-mandatory"
+      >
+        {products.map((p) => (
+          <div key={p.name} className="w-full flex-shrink-0 snap-start md:w-[calc(33.333%-11px)]">
+            <ProductCard {...p} />
+          </div>
+        ))}
+      </div>
+
+      {canScrollRight && (
+        <button
+          onClick={() => scroll('right')}
+          aria-label="Scroll right"
+          className="absolute -right-4 top-1/2 z-10 flex -translate-y-1/2 items-center justify-center rounded-full border border-[var(--line)] bg-white/90 p-2 shadow-md backdrop-blur-sm transition hover:bg-white"
+        >
+          <ChevronRight size={18} className="text-[var(--text-secondary)]" />
+        </button>
+      )}
+    </div>
+  )
+}
+
 function MenuSection({
   id,
   emoji,
   label,
   title,
   products,
-  columns = 'grid-cols-2 md:grid-cols-3',
 }: {
   id?: string
   emoji: string
   label: string
   title: string
   products: { name: string; desc: string }[]
-  columns?: string
 }) {
   return (
     <div id={id} className="mt-16">
@@ -49,18 +108,12 @@ function MenuSection({
         <span className="text-3xl">{emoji}</span>
         <div>
           <p className="section-label m-0">{label}</p>
-          <h2
-            className="display-title m-0 text-2xl font-bold text-[var(--text-primary)] sm:text-3xl"
-          >
+          <h2 className="display-title m-0 text-2xl font-bold text-[var(--text-primary)] sm:text-3xl">
             {title}
           </h2>
         </div>
       </div>
-      <div className={`grid gap-4 ${columns}`}>
-        {products.map((p) => (
-          <ProductCard key={p.name} {...p} />
-        ))}
-      </div>
+      <ProductCarousel products={products} />
     </div>
   )
 }
@@ -160,7 +213,6 @@ function HomePage() {
           label={t('menu.creamSalads.label')}
           title={t('menu.creamSalads.title')}
           products={creamSalads}
-          columns="grid-cols-2 md:grid-cols-4"
         />
 
         <MenuSection
@@ -175,7 +227,6 @@ function HomePage() {
           label={t('menu.pancakes.label')}
           title={t('menu.pancakes.title')}
           products={pancakes}
-          columns="grid-cols-2 md:grid-cols-4"
         />
       </section>
 

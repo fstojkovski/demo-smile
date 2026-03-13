@@ -63,6 +63,14 @@ a:hover {
   font-family: var(--font-display);
 }
 
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 .card-shell {
   background: var(--surface-strong);
   border: 1px solid var(--line);
