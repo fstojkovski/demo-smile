@@ -4,7 +4,8 @@
       "Bash(npm run:*)",
       "Bash(git add:*)",
       "Bash(npm install:*)",
-      "Bash(ls /Users/filipstojkovski/Code/Personal/smile/*.yaml /Users/filipstojkovski/Code/Personal/smile/*.lock /Users/filipstojkovski/Code/Personal/smile/pnpm-lock.yaml 2>/dev/null; ls /Users/filipstojkovski/Code/Personal/smile/package-lock.json 2>/dev/null)"
+      "Bash(ls /Users/filipstojkovski/Code/Personal/smile/*.yaml /Users/filipstojkovski/Code/Personal/smile/*.lock /Users/filipstojkovski/Code/Personal/smile/pnpm-lock.yaml 2>/dev/null; ls /Users/filipstojkovski/Code/Personal/smile/package-lock.json 2>/dev/null)",
+      "Bash(tree -L 3 -I 'node_modules|dist' /Users/filipstojkovski/Code/Personal/smile 2>/dev/null || find /Users/filipstojkovski/Code/Personal/smile -type d -not -path '*/node_modules/*' -not -path '*/dist/*' -not -path '*/.git/*' | head -30)"
     ]
   }
 }
