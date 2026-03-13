@@ -15,10 +15,10 @@ export default function Header() {
           to="/"
           className="flex flex-shrink-0 items-center gap-2 no-underline"
         >
-          <span className="text-2xl leading-none">😊</span>
+          <img src="/smile-logo.png" alt="Smile logo" className="h-[70px] w-[70px] object-contain" />
           <span
-            className="text-xl font-black tracking-tight text-[var(--text-primary)]"
-            style={{ fontFamily: 'var(--font-display)' }}
+            className="text-3xl font-semibold tracking-tight text-[var(--text-primary)]"
+            style={{ fontFamily: "'Pacifico', cursive" }}
           >
             Smile
           </span>
