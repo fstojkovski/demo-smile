@@ -30,15 +30,19 @@ const en = {
       label: 'Freshly Baked',
       title: 'Pastries',
       items: [
-        { name: 'Homemade Crescent', desc: 'Handmade, delicious, and fluffy homemade crescent' },
-        { name: 'Cheese pie', desc: 'Crusty cheese pie filled with traditional white cheese' },
+        { name: 'Homemade Crescent', desc: 'Handmade, delicious, and fluffy homemade crescent', price: 100, pricePerKg: true },
+        { name: 'Cheese pie', desc: 'Crusty cheese pie filled with traditional white cheese', price: 100, pricePerKg: false },
         {
           name: 'Mini cheese pie',
           desc: 'The signature crusty cheese pie little brother, shaped as a triangle',
+          price: 100,
+          pricePerKg: false,
         },
         {
           name: 'Pogacha',
           desc: 'Traditional macedonian bread, usually prepared for orthodox holidays',
+          price: 100,
+          pricePerKg: false,
         },
       ],
     },
@@ -46,9 +50,9 @@ const en = {
       label: 'Homemade',
       title: 'Cream Salads',
       items: [
-        { name: 'Ruska salad', desc: 'Potatoes, carrots, peas and mayo dressing' },
-        { name: 'Francuska salad', desc: 'Yogurt, cheese, ham and cucumbers' },
-        { name: 'Chicken salad', desc: 'Boiled chicken breast, mayo, pickles, yogurt' },
+        { name: 'Ruska salad', desc: 'Potatoes, carrots, peas and mayo dressing', price: 100, pricePerKg: true },
+        { name: 'Francuska salad', desc: 'Yogurt, cheese, ham and cucumbers', price: 100, pricePerKg: true },
+        { name: 'Chicken salad', desc: 'Boiled chicken breast, mayo, pickles, yogurt', price: 100, pricePerKg: true },
       ],
     },
     sandwiches: {
@@ -58,22 +62,28 @@ const en = {
         {
           name: 'Classic Ham',
           desc: 'Homemade bun, Ham, Greek yogurt, Cheese, Tomato and Cucumber',
+          price: 100,
         },
         {
           name: 'Classic Peperoni',
           desc: 'Homemade bun, Peperoni, Greek yogurt, Cheese, Tomato and Cucumber',
+          price: 100,
         },
         {
           name: 'Classic Smoked Pork Ham',
           desc: 'Homemade bun, Smoked Pork, Greek yogurt, Cheese, Tomato and Cucumber',
+          price: 100,
         },
         {
           name: 'Cream salad Sandwich',
           desc: 'Homemade bun filled with any of the cream salads',
+          price: 100,
         },
         {
           name: 'Make your own sandwich',
           desc: 'Choose any ingredient to make your own sandwich with the best homemade buns',
+          price: 100,
+          hasCustomPrice: true,
         },
       ],
     },
@@ -84,16 +94,19 @@ const en = {
         {
           name: 'Makedonska Palachinka',
           desc: 'The classic balkan pancake filled with hazelnut cocoa cream and banana',
+          price: 100,
         },
         {
           name: 'Piroshka with ham and cheese',
           desc: 'Deep-fried pancake filled with ham and cheese',
+          price: 100,
         },
         {
           name: 'Piroshka with ruska salad',
           desc: 'Deep-fried pancake filled with Ruska salad',
+          price: 100,
         },
-        { name: 'Palachinka', desc: 'Or just get the pancakes and fill it however you like' },
+        { name: 'Palachinka', desc: 'Or just get the pancakes and fill it however you like', price: 100 },
       ],
     },
   },
@@ -121,10 +134,26 @@ const en = {
     },
   },
   about: {
-    kicker: 'About',
-    title: 'A small starter with room to grow.',
-    description:
-      'TanStack Start gives you type-safe routing, server functions, and modern SSR defaults. Use this as a clean foundation, then layer in your own routes, styling, and add-ons.',
+    kicker: 'About Us',
+    title: 'Where tradition meets family warmth.',
+    story: {
+      heading: 'Our Story',
+      p1: 'What started as a dream in 2007 has grown into a neighborhood staple. After years of honing their craft in some of Skopje\'s most beloved bakeries, the founders of Smile set out to build something of their own — a place where professional expertise meets cherished family recipes passed down through generations.',
+      p2: 'Our signature Homemade Crescents have remained unchanged since day one. Every single batch is shaped by the same hands that started it all — the owner herself — ensuring the taste and quality you love never wavers.',
+    },
+    people: {
+      heading: 'The People Behind Smile',
+      description: 'Smile is run by Sonja Stojkovska and her husband Zoran Stojkovski. Together, they are behind the counter every day, greeting regulars by name, and putting genuine care into everything they serve. It\'s this personal touch that makes Smile more than just a bakery.',
+    },
+    quality: {
+      heading: 'Quality You Can Taste',
+      p1: 'We source our core ingredients — flour, eggs, and more — from trusted local producers. No shortcuts, no compromises, just honest food made with real ingredients.',
+      p2: 'Everything on our shelves is baked fresh that morning. If it wasn\'t made today, we don\'t serve it. That\'s a promise we\'ve kept since opening our doors.',
+    },
+    notice: {
+      heading: 'A Friendly Note',
+      description: 'During holidays and peak seasons our small kitchen runs at full capacity, and we occasionally sell out earlier than usual. To make sure you get exactly what you\'re craving, we recommend placing your order ahead of time. We\'d hate for you to leave empty-handed!',
+    },
   },
   misc: {
     photoComingSoon: 'Photo coming soon',

@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import { Camera, MapPin, Phone, Clock, Instagram, Facebook, ChevronLeft, ChevronRight } from 'lucide-react'
+import type { Product } from '../types'
 
 export const Route = createFileRoute('/')({ component: HomePage })
 
@@ -17,19 +18,25 @@ function ImgPlaceholder() {
   )
 }
 
-function ProductCard({ name, desc }: { name: string; desc: string }) {
+function ProductCard({ name, desc, price, pricePerKg, hasCustomPrice }: Product) {
   return (
     <article className="card-shell overflow-hidden p-4 transition-all duration-200">
       <ImgPlaceholder />
       <div className="mt-3">
-        <h3 className="mb-1 text-base font-bold text-[var(--text-primary)]">{name}</h3>
+        <div className="mb-1 flex items-baseline justify-between gap-2">
+          <h3 className="text-base font-bold text-[var(--text-primary)]">{name}</h3>
+          {!hasCustomPrice
+            ? (<span className="shrink-0 text-sm font-semibold text-[var(--accent)]">{price} {pricePerKg ? 'ден/kg' : 'ден' }</span>)
+            : null
+          }
+        </div>
         <p className="m-0 text-sm leading-relaxed text-[var(--text-secondary)]">{desc}</p>
       </div>
     </article>
   )
 }
 
-function ProductCarousel({ products }: { products: { name: string; desc: string }[] }) {
+function ProductCarousel({ products }: { products: Product[] }) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
@@ -100,7 +107,7 @@ function MenuSection({
   emoji: string
   label: string
   title: string
-  products: { name: string; desc: string }[]
+  products: Product[]
 }) {
   return (
     <div id={id} className="mt-16">
@@ -123,10 +130,10 @@ function MenuSection({
 function HomePage() {
   const { t } = useTranslation()
 
-  const pastries = t('menu.pastries.items', { returnObjects: true }) as { name: string; desc: string }[]
-  const creamSalads = t('menu.creamSalads.items', { returnObjects: true }) as { name: string; desc: string }[]
-  const sandwiches = t('menu.sandwiches.items', { returnObjects: true }) as { name: string; desc: string }[]
-  const pancakes = t('menu.pancakes.items', { returnObjects: true }) as { name: string; desc: string }[]
+  const pastries = t('menu.pastries.items', { returnObjects: true }) as Product[]
+  const creamSalads = t('menu.creamSalads.items', { returnObjects: true }) as Product[]
+  const sandwiches = t('menu.sandwiches.items', { returnObjects: true }) as Product[]
+  const pancakes = t('menu.pancakes.items', { returnObjects: true }) as Product[]
 
   const pills = [
     t('hero.pills.pastries'),
@@ -320,7 +327,7 @@ function HomePage() {
             <div className="card-shell overflow-hidden p-0">
               <iframe
                 title="Smile Bakery location — Skopje"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=21.4347%2C41.9782%2C21.4447%2C41.9832&layer=mapnik&marker=41.9808%2C21.4398"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1482.9604223545812!2d21.439240965156277!3d41.98050922622559!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135415c5517e207f%3A0x9692613be796a265!2sSmile!5e0!3m2!1sen!2smk!4v1774520925154!5m2!1sen!2smk"
                 width="100%"
                 height="100%"
                 style={{ minHeight: '400px', border: 0, display: 'block' }}
